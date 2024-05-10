@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
+import Button from "components/Button";
 import DataView from "components/DataView";
-import Title from "components/Title";
-import TodoList from "components/TodoList";
+import InputContainer from "components/InputContainer";
+import ShowInputButton from "components/ShowInputButton";
+import TextInput from "components/TextInput";
+import TodoInput from "components/TodoInput";
 import { useState } from "react";
 
 const WrapStyle = styled.div`
@@ -14,15 +17,23 @@ const WrapStyle = styled.div`
 `;
 
 function App() {
-  const [todoList, setTodoList] = useState(["a", "2", "f"]);
+  const [todoList, setTodolist] = useState([
+    "contextAPI 공부하기",
+    "타입스크립트 공부하기",
+    "JWT 공부하기",
+  ]);
 
   const onDelete = todo => {
-    setTodoList(todoList.filter(item => item !== todo));
+    setTodolist(todoList.filter(item => item != todo));
+  };
+  const onAdd = todo => {
+    setTodolist([...todoList, todo]);
   };
 
   return (
     <WrapStyle>
-      <DataView todoList={todoList} onDelete={onDelete}></DataView>
+      <DataView todoList={todoList} onDelete={onDelete} />
+      <InputContainer onAdd={onAdd} />
     </WrapStyle>
   );
 }
