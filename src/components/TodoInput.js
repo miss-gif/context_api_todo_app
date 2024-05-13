@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "./Button";
 import TextInput from "./TextInput";
 import Title from "./Title";
+import { TodoListContext } from "contexts/TodoListContext";
 
 const WrapStyle = styled.div`
   position: absolute;
@@ -25,7 +26,7 @@ const BackgroundStyle = styled.div`
 const ContetsStyle = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background-color: #fff;
   padding: 32px;
@@ -39,7 +40,8 @@ const InputInnerStyle = styled.div`
   gap: 16px;
 `;
 
-const TodoInput = ({ onAdd, label }) => {
+const TodoInput = ({ onClose }) => {
+  const { onAdd } = useContext(TodoListContext);
   const [todo, setTodo] = useState("");
   const [mesaage, setMessage] = useState("");
 
@@ -47,8 +49,10 @@ const TodoInput = ({ onAdd, label }) => {
     if (todo === "") {
       return setMessage("할 일을 작성해주세요");
     }
+
     onAdd(todo);
     setTodo("");
+    onClose();
   };
 
   return (
@@ -58,9 +62,9 @@ const TodoInput = ({ onAdd, label }) => {
         <Title label="할 일 추가" />
         <InputInnerStyle>
           <TextInput value={todo} onChange={setTodo} />
-          <Button label={label} color="#304ffe" onClick={onAddTodo} />
-          <div style={{ color: "red" }}>{mesaage}</div>
+          <Button label="추가" color="#304ffe" onClick={onAddTodo} />
         </InputInnerStyle>
+        <div style={{ color: "red" }}>{mesaage}</div>
       </ContetsStyle>
     </WrapStyle>
   );
