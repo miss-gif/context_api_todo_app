@@ -8,6 +8,11 @@ const TodoItemWrapStyle = styled.div`
   margin-bottom: 16px;
 `;
 
+interface Props {
+  label:string;
+  onDelete?:() => void
+}
+
 const LabelStyle = styled.div`
   /* flex-grow: 1; 다른 flex 아이템들과 동일한 비율로 나누어 가짐
   flex-shrink: 1; 아이템이 공간이 부족할 때 줄어들 수 있는 정도 비슷한 비율로 줄어든다.
@@ -18,7 +23,7 @@ const LabelStyle = styled.div`
   margin-right: 16px;
 `;
 
-const TodoItem = ({ label, onDelete }) => {
+const TodoItem = ({ label, onDelete }:Props) => {
   return (
     <TodoItemWrapStyle>
       <LabelStyle>{label}</LabelStyle>
