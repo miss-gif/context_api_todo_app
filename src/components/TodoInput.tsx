@@ -28,7 +28,7 @@ const BackgroundStyle = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.75);
 `;
-const ContetsStyle = styled.div`
+const ContextsStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -48,7 +48,7 @@ const InputInnerStyle = styled.div`
 const TodoInput = ({ onClose }:Props) => {
   const { onAdd } = useContext(TodoListContext);
   const [todo, setTodo] = useState("");
-  const [mesaage, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const onAddTodo = () => {
     if (todo === "") {
@@ -63,14 +63,14 @@ const TodoInput = ({ onClose }:Props) => {
   return (
     <WrapStyle>
       <BackgroundStyle />
-      <ContetsStyle>
+      <ContextsStyle>
         <Title label="할 일 추가" />
         <InputInnerStyle>
           <TextInput value={todo} onChange={setTodo} />
           <Button label="추가" color="#304ffe" onClick={onAddTodo} />
         </InputInnerStyle>
-        <div style={{ color: "red" }}>{mesaage}</div>
-      </ContetsStyle>
+        <div style={{ color: "red" }}>{message}</div>
+      </ContextsStyle>
     </WrapStyle>
   );
 };
