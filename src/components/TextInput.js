@@ -5,7 +5,7 @@ const InputStyle = styled.input`
   padding: 8px;
 `;
 
-const TextInput = ({ value, onChange, color = "#ff5722" }) => {
+const TextInput = ({ value, onChange }) => {
   return (
     <InputStyle
       type="text"
